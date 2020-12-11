@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatefulWidget {
-  ResultPage({Key key}) : super(key: key);
+  ResultPage({Key key, this.result}) : super(key: key);
+
+  final double result;
 
   @override
   _ResultPageState createState() => _ResultPageState();
 }
 
 class _ResultPageState extends State<ResultPage> {
+  String dataResult;
+  @override
+  void initState() {
+    dataResult = widget.result.toString().substring(0,4);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +60,7 @@ class _ResultPageState extends State<ResultPage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                      Text("22,1",
+                      Text("$dataResult",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

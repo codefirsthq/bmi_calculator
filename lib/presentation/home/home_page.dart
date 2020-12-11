@@ -166,14 +166,19 @@ class _HomePageState extends State<HomePage> {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 color: Color(0xffFF0067),
                 onPressed: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => ResultPage()));
-
                   final int _gender = _option;
                   final double _height = _currVal;
                   final int _weight = weight;
                   final int _age = age;
-                  
+
+                  final _result = (_weight ) / ((_height/100) * (_height/100));
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResultPage(
+                                result: _result,
+                              )));
                 },
                 child: Text(
                   "CALCULATE BMI",
