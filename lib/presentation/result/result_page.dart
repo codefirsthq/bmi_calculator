@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatefulWidget {
-  ResultPage({Key key, this.result}) : super(key: key);
+  ResultPage({Key? key, this.result}) : super(key: key);
 
-  final double result;
+  final double? result;
 
   @override
   _ResultPageState createState() => _ResultPageState();
 }
 
 class _ResultPageState extends State<ResultPage> {
-  String dataResult;
+  String? dataResult;
   @override
   void initState() {
     dataResult = widget.result.toString().substring(0,4);

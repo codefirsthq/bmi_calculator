@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                 label: "WEIGHT",
                                 minVal: 60,
                                 onPressed: (val) {
-                                  weight = val;
+                                  weight = val!;
                                 },
                               )),
                         ),
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                                 label: "AGE",
                                 minVal: 25,
                                 onPressed: (val) {
-                                  age = val;
+                                  age = val!;
                                 },
                               )),
                         ),
@@ -171,7 +171,8 @@ class _HomePageState extends State<HomePage> {
                   final int _weight = weight;
                   final int _age = age;
 
-                  final _result = (_weight ) / ((_height/100) * (_height/100));
+                  final _result =
+                      (_weight) / ((_height / 100) * (_height / 100));
 
                   Navigator.push(
                       context,
@@ -194,18 +195,18 @@ class _HomePageState extends State<HomePage> {
 
 class CalculateValueContainer extends StatefulWidget {
   const CalculateValueContainer(
-      {Key key, this.label, this.minVal, this.onPressed})
+      {Key? key, this.label, this.minVal, this.onPressed})
       : super(key: key);
-  final String label;
-  final int minVal;
-  final ValueChanged<int> onPressed;
+  final String? label;
+  final int? minVal;
+  final ValueChanged<int?>? onPressed;
   @override
   _CalculateValueContainerState createState() =>
       _CalculateValueContainerState();
 }
 
 class _CalculateValueContainerState extends State<CalculateValueContainer> {
-  int _currVal;
+  int? _currVal;
   @override
   void initState() {
     _currVal = widget.minVal;
@@ -217,7 +218,7 @@ class _CalculateValueContainerState extends State<CalculateValueContainer> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(widget.label,
+        Text(widget.label!,
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         Text(_currVal.toString(),
             style: TextStyle(
@@ -238,9 +239,9 @@ class _CalculateValueContainerState extends State<CalculateValueContainer> {
               ),
               onPressed: () {
                 setState(() {
-                  if (_currVal >= 0) _currVal--;
+                  if (_currVal! >= 0) _currVal = _currVal! - 1;
                 });
-                widget.onPressed(_currVal);
+                widget.onPressed!(_currVal);
               },
             ),
             MaterialButton(
@@ -254,10 +255,10 @@ class _CalculateValueContainerState extends State<CalculateValueContainer> {
               ),
               onPressed: () {
                 setState(() {
-                  if (_currVal >= 0) _currVal++;
+                  if (_currVal! >= 0) _currVal = _currVal! + 1;
                 });
 
-                widget.onPressed(_currVal);
+                widget.onPressed!(_currVal);
               },
             )
           ],
@@ -268,7 +269,7 @@ class _CalculateValueContainerState extends State<CalculateValueContainer> {
 }
 
 class GenderContainer extends StatelessWidget {
-  const GenderContainer({Key key, @required this.data}) : super(key: key);
+  const GenderContainer({Key? key, required this.data}) : super(key: key);
 
   final RadioGender data;
   @override
@@ -281,11 +282,11 @@ class GenderContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SvgPicture.asset(
-              data.symbol,
-              color: (!data.isSelected) ? Colors.grey : Colors.white,
+              data.symbol!,
+              color: (!data.isSelected!) ? Colors.grey : Colors.white,
             ),
             Text(
-              data.text,
+              data.text!,
               style: TextStyle(color: Colors.white),
             )
           ],
@@ -294,8 +295,8 @@ class GenderContainer extends StatelessWidget {
 }
 
 class RadioGender {
-  bool isSelected;
-  final String symbol;
-  final String text;
+  bool? isSelected;
+  final String? symbol;
+  final String? text;
   RadioGender({this.isSelected, this.symbol, this.text});
 }
